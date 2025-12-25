@@ -2,14 +2,21 @@
   "name": "ziphub",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"electron .\"",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "pack": "next build && electron-builder --dir",
+    "dist": "next build && electron-builder"
   },
   "dependencies": {
+    "adm-zip": "^0.5.16",
+    "archiver": "^7.0.1",
+    "lucide-react": "^0.562.0",
     "next": "16.1.1",
+    "node-unrar-js": "^2.0.2",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
@@ -18,9 +25,20 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "electron-builder",
+      "7zip-bin",
+      "app-builder-bin"
+    ]
   }
 }
